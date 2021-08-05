@@ -1,0 +1,13 @@
+im = double(imread('Y.png'));
+%im = imresize(im,0.1);
+
+Lf = imGradFeature(im);
+
+
+X = Lf(:,:,:,1);
+Lf = repmat(Lf,2,2);
+
+param = buildModPoissonParam( size(Lf) );
+Y = modPoisson( Lf, param, 1E-8 );
+figure,imshow(Y);
+imwrite(uint8(Y),'Y.png');
