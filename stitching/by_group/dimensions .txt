@@ -1,0 +1,26 @@
+Empty: 1029 x 1389
+Part1: 1063x 3094 pixels
+Marker1: 143 x 134
+Part2: 984 x 2244 pixels
+Marker2: 156 x 145
+Part3: 1125 x 3837 pixels
+Marker3: 156 x 146
+
+Empty quilted: 5feet x 5feet
+//////////
+Marker size 1.5 inches
+
+1 pixel = 1.5/146.67 = 0.010227 inch
+97.78 pixels/inch
+
+
+120inches x 120inches 
+
+
+
+
+
+640 x 480 pixels -> 13.81 x 10.36 inches 
+0.350774 x 0.263144 meters 
+
+ 1.5 inches /69.5pixels = 0.02158 inches / pixel
