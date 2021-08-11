@@ -1,33 +1,49 @@
-base = double(imread('empty_texture/texturefilled.png'));
-c1 = double(imread('by_group/exp5_1.png'));
-c2 = double(imread('by_group/exp5_2.png'));
-c3 = double(imread('by_group/exp5_3.png'));
-
-%resize to be able to run the program
-%base = imcrop(base, [1 1 2934 2934]); % 25x25 ft
-base = imresize(base, 0.1);
-c1 = imresize(c1,0.1);
-c2 = imresize(c2,0.1);
-c3 = imresize(c3,0.1);
-
-Lf = imGradFeature(base);
-A = imGradFeature(c1);
-B = imGradFeature(c2);
-C = imGradFeature(c3);
 
 
-w1 = 100;
-h2 = 300;
-LX = 100;
-LY = 100;
-GX = 1;
-GY = 1;
+
+myFolder = '/Users/paulchenchen/other img files/Concrete Texture';
+
+if ~isdir(myFolder)
+    errorMessage = sprintf('Error: The following folder does not exist:\n%s', myFolder);
+    uiwait(warndlg(errorMessage));
+    return;
+end
+filePattern = fullfile(myFolder, '*.jpg');
+pngFiles = dir(filePattern);
+
+
+
+
+imlist = {};
+parfor k = 1:length(pngFiles)
+    baseFileName = pngFiles(k).name;
+    fullFileName = fullfile(myFolder, baseFileName);
+    fprintf(1, 'Now reading %s\n', fullFileName);
+    imageArray = imread(fullFileName);
+    imlist {1,k} = imGradFeature(imageArray);
+end
+
+base =[];
+for x = 1:6 %adding in X
+    for y = 1:8 %adding in Y
+        r = round ((20-1).*rand() + 1);
+        x_loc = (x-1)*3864 +1;
+        y_loc = (x-1)*5152 +1;
+        base(y_loc: y_loc +3864, x_loc:x+5152, :,:) = imlist{1,r}(:,:,:,:);
+    end
+end 
+
+base = imcrop(base,[1 1 29335 29335]);
+
+
+
 
 Lf(LY:LY+h,LX:LX+w,:,:) = A(GY:GY+h,GX:GX+w,:,:);
 
-X = Lf(:,:,:,1);
-param = buildModPoissonParam( size(Lf) );
-Y = modPoisson( Lf, param, 1E-8 );
+param = buildModPoissonParam( size(base) );
+Y = modPoisson( base, param, 1E-8 );
 figure,imshow(Y);
-%imwrite(uint8(X),'X.png');
-imwrite(uint8(Y),'testblend.png');
+imwrite(uint8(Y),'base.png');
+
+
+
