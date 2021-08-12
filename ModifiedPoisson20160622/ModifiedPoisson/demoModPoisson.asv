@@ -1,0 +1,50 @@
+
+
+
+myFolder = '/home/yi-chia/image-processing/concrete';
+
+if ~isdir(myFolder)
+    errorMessage = sprintf('Error: The following folder does not exist:\n%s', myFolder);
+    uiwait(warndlg(errorMessage));
+    return;
+end
+filePattern = fullfile(myFolder, '*.JPG');
+pngFiles = dir(filePattern);
+
+
+
+
+imlist = {};
+for k = 1:length(pngFiles)
+    baseFileName = pngFiles(k).name;
+    fullFileName = fullfile(myFolder, baseFileName);
+    fprintf(1, 'Now reading %s\n', fullFileName);
+    imageArray = imread(fullFileName);
+    imlist {1,k} = imageArray;
+end
+%{
+base =[];
+for x = 1:6 %adding in X
+    for y = 1:8 %adding in Y
+        r = round ((20-1).*rand() + 1);
+        %[h,w] = size(imlist{1,r});
+        x_loc = (x-1)*3864 +1;
+        y_loc = (y-1)*5152 +1;
+        base(y_loc: y_loc +3864 - 1, x_loc:x_loc+5152 - 1, :) = imlist{1,r}(:,:,:);
+    end
+end 
+imGradFeature(
+base = imcrop(base,[1 1 29335 29335]);
+
+
+
+
+Lf(LY:LY+h,LX:LX+w,:,:) = A(GY:GY+h,GX:GX+w,:,:);
+
+param = buildModPoissonParam( size(base) );
+Y = modPoisson( base, param, 1E-8 );
+figure,imshow(Y);
+imwrite(uint8(Y),'base.png');
+
+%}
+
