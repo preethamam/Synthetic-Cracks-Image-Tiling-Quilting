@@ -11,16 +11,16 @@
 %%
 %placing random cracks with random rotations
 %numbers of cracks 
-num_cracks_add = 250;
+num_cracks_add = 90;
 
 %area within blank to put cracks
-x_max = 27000; 
-x_min = 3000;
-y_max = 3000;
-y_min = 27000;
+x_max = 10000; 
+x_min = 1000;
+y_max = 10000;
+y_min = 1000;
 
-%declaring blank
-blank = zeros(29335,29335,'logical'); %25x25ft
+%declaring base area
+blank = zeros(11733,11733,'logical'); %25x25ft
 %blank = zeros(10000,10000,'logical');
 
 assigned = [0,0,0,0,0,0]; %[x y crack degree xshift yshift]

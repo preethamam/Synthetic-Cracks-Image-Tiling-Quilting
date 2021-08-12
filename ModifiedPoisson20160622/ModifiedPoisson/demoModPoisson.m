@@ -19,11 +19,12 @@ parfor k = 1:length(pngFiles)
     baseFileName = pngFiles(k).name;
     fullFileName = fullfile(myFolder, baseFileName);
     fprintf(1, 'Now reading %s\n', fullFileName);
-    imageArray = imread(fullFileName);
-    imlist {1,k} = imGradFeature(imageArray);
+    imageArray = imresize(imread(fullFileName),0.1);
+    imlist {1,k} = imageArray;
 end
 
 base =[];
+%{
 for x = 1:6 %adding in X
     for y = 1:8 %adding in Y
         r = round ((20-1).*rand() + 1);
@@ -32,7 +33,9 @@ for x = 1:6 %adding in X
         base(y_loc: y_loc +3864, x_loc:x+5152, :,:) = imlist{1,r}(:,:,:,:);
     end
 end 
+%}
 
+imGradFeature(
 base = imcrop(base,[1 1 29335 29335]);
 
 
