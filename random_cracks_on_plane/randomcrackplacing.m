@@ -40,6 +40,7 @@ function [result] = randomcrackplacing(plocation,w,h,num_cracks_add,savedname)
             %random x & y inside blank
             x = round ((x_max-x_min)*rand()+x_min);
             y = round ((y_max-y_min)*rand()+y_min);
+            
             %random angle
             theta = round (359*rand());
             %CREATE THE MATRIX

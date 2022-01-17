@@ -15,10 +15,16 @@
 
 %%
 %generate random cracks with different timestep
-%cracklist_generator(timesteps,cracknumbers);
+%cracklist_generator(timesteps,cracknumbers, mode);
+%mode1 no branches; mode2 always grow branches; mode3 by chance(default)
 %returning[boundingbox{}, pixellocations{}] are {timesteps x cracknum}
 
-[b4,p4] = cracklist_generator(10,50);
+[b4,p4] = cracklist_generator(6,5,2);
+
+
+%%
+%showing the cracks in the same plot
+showcracks(p4);
 
 
 %%
@@ -26,7 +32,7 @@
 %normalize the plocation base on the latest crack(exp5)
 
 %[Box,plocation] = normalizecracks([b1 b2 b3],[p1 p2 p3]);
-[Box,plocation] = normalizecracks(b4,p4);
+%[Box,plocation] = normalizecracks(b4,p4);
 
 
 %%
@@ -36,5 +42,6 @@
 % can return an cell array containing areas of cracks if assigned to a variable
 % The following generates and saves images of 5000x5000 pixels with 5 cracks
 
-x = randomcrackplacing(p4, 5000, 5000, 30, 'randomcrackgen');
+%x = randomcrackplacing(p4, 5000, 5000, 30, "exp"); %save the imgaes with
+%the name exp
 %x = randomcrackplacing(p4, 5000, 5000, 30) %not to save the images
