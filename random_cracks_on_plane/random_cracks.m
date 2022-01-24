@@ -25,12 +25,12 @@
 %%
 %crack_generator(size_x_max,size_x_min,size_y_max, size_y_min, thickness_max, thickness_min, cracknums, mode, max_branches, min_branches)
 
-[b4,p4] = crack_generator(500,500, 500, 500, 5,1, 6, 2, 5,1);
+[b4,p4] = crack_generator(1000,1000, 1000, 1000, 5,1, 6, 2, 5,1);
 %[b4,p2] = crack_generator(1000,300, 1000, 300, 5,1, 1, 1);
 
 %%
 %showing the cracks in the same plot
-showcracks(p4,500,500);
+showcracks(p4,1000,1000);
 
 
 %%
