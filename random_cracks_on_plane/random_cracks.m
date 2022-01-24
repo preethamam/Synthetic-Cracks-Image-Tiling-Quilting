@@ -19,12 +19,19 @@
 %mode1 no branches; mode2 always grow branches; mode3 by chance(default)
 %returning[boundingbox{}, pixellocations{}] are {timesteps x cracknum}
 
-[b4,p4] = cracklist_generator(6,5,2);
+%[b4,p4] = cracklist_generator(6,5,3);
 
+
+%%
+%crack_generator(size_x_max,size_x_min,size_y_max, size_y_min, thickness_max, thickness_min, cracknums, mode, max_branches, min_branches)
+
+[b4,p4] = crack_generator(500,500, 500, 500, 5,1, 6, 2, 5,1);
+%[b4,p2] = crack_generator(1000,300, 1000, 300, 5,1, 1, 1);
 
 %%
 %showing the cracks in the same plot
 showcracks(p4);
+showcracks(p2)
 
 
 %%
