@@ -30,8 +30,7 @@
 
 %%
 %showing the cracks in the same plot
-showcracks(p4);
-showcracks(p2)
+showcracks(p4,500,500);
 
 
 %%
